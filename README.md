@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎨 Tratia - Beauty Salon Management MVP
 
-## Getting Started
+A modern, production-ready SaaS platform for beauty salons to manage appointments, services, and client relationships.
 
-First, run the development server:
+**Status**: MVP Ready for Deployment ✅
+
+## 🎯 What is Tratia?
+
+Tratia is a comprehensive salon management system that helps beauty salon owners:
+- 📅 **Manage appointments** - Keep track of all bookings with client details
+- ✨ **Manage services** - List all services offered with pricing and duration
+- 👤 **Manage profiles** - Store salon info and client details
+- 📊 **Track metrics** - See weekly revenue, occupancy, and no-shows
+
+## 🏗️ Architecture
+
+### Tech Stack
+- **Frontend**: Next.js 16.2.6 (React 19) + Tailwind CSS v4
+- **Authentication**: Clerk (Premium) - Pre-built auth UI
+- **Database**: Supabase (PostgreSQL) with Row Level Security
+- **Hosting**: Vercel (auto-deploy from GitHub)
+- **Animations**: Framer Motion
+- **Data Fetching**: SWR (stale-while-revalidate)
+- **Type Safety**: TypeScript
+
+## 🚀 Quick Start
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Visit http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Create `.env.local` with Supabase and Clerk keys (see SETUP_DATABASE.md)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📖 Documentation
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **[SETUP_DATABASE.md](./SETUP_DATABASE.md)** - Database setup guide
+- **[DEPLOYMENT_CHECKLIST.md](./DEPLOYMENT_CHECKLIST.md)** - Production deployment
 
-## Learn More
+## 🔌 API Endpoints
 
-To learn more about Next.js, take a look at the following resources:
+### Bookings
+- `GET /api/bookings` - List bookings
+- `POST /api/bookings` - Create booking
+- `PUT /api/bookings/[id]` - Update booking
+- `DELETE /api/bookings/[id]` - Delete booking
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Services
+- `GET /api/services` - List services
+- `POST /api/services` - Create service
+- `PUT /api/services/[id]` - Update service
+- `DELETE /api/services/[id]` - Delete service
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### User
+- `GET /api/user` - Get profile
+- `PUT /api/user` - Update profile
 
-## Deploy on Vercel
+## 🛠️ Built By
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Development with Claude Code + Anthropic Claude AI
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MVP Ready: All 7 phases complete ✅
