@@ -7,6 +7,7 @@ import { useState } from 'react'
 export default function PersonalizedLoginForm() {
   const { signIn } = useSignIn()
   const router = useRouter()
+
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -32,17 +33,42 @@ export default function PersonalizedLoginForm() {
     }
   }
 
-  const handleSocialAuth = async (strategy: 'oauth_google' | 'oauth_facebook' | 'oauth_apple') => {
+  const handleGoogleSignIn = async () => {
     if (!signIn) return
-
     try {
-      await (signIn as any).authenticateWithRedirect({
-        strategy,
-        redirectUrl: '/login-verify',
+      await signIn.authenticateWithOAuth({
+        strategy: 'oauth_google',
+        redirectUrl: '/',
         redirectUrlComplete: '/dashboard',
       })
     } catch (err: any) {
-      setError(err?.errors?.[0]?.message || 'Error con la autenticación social')
+      setError(err?.errors?.[0]?.message || 'Error con Google')
+    }
+  }
+
+  const handleFacebookSignIn = async () => {
+    if (!signIn) return
+    try {
+      await signIn.authenticateWithOAuth({
+        strategy: 'oauth_facebook',
+        redirectUrl: '/',
+        redirectUrlComplete: '/dashboard',
+      })
+    } catch (err: any) {
+      setError(err?.errors?.[0]?.message || 'Error con Facebook')
+    }
+  }
+
+  const handleAppleSignIn = async () => {
+    if (!signIn) return
+    try {
+      await signIn.authenticateWithOAuth({
+        strategy: 'oauth_apple',
+        redirectUrl: '/',
+        redirectUrlComplete: '/dashboard',
+      })
+    } catch (err: any) {
+      setError(err?.errors?.[0]?.message || 'Error con Apple')
     }
   }
 
@@ -52,7 +78,7 @@ export default function PersonalizedLoginForm() {
       <div className="space-y-3">
         <button
           type="button"
-          onClick={() => handleSocialAuth('oauth_google')}
+          onClick={handleGoogleSignIn}
           className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-white border border-[#dbc2b0] hover:bg-[#f9f7f5] rounded-lg text-[#1a1c1c] font-semibold transition"
         >
           <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
@@ -66,7 +92,7 @@ export default function PersonalizedLoginForm() {
 
         <button
           type="button"
-          onClick={() => handleSocialAuth('oauth_facebook')}
+          onClick={handleFacebookSignIn}
           className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-white border border-[#dbc2b0] hover:bg-[#f9f7f5] rounded-lg text-[#1a1c1c] font-semibold transition"
         >
           <svg className="w-5 h-5" viewBox="0 0 24 24" fill="#1877F2">
@@ -77,7 +103,7 @@ export default function PersonalizedLoginForm() {
 
         <button
           type="button"
-          onClick={() => handleSocialAuth('oauth_apple')}
+          onClick={handleAppleSignIn}
           className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-white border border-[#dbc2b0] hover:bg-[#f9f7f5] rounded-lg text-[#1a1c1c] font-semibold transition"
         >
           <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
